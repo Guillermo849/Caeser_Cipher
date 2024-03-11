@@ -13,7 +13,7 @@ class Caesar
     # Method that ciphers the text that we give it
     private def cipher
         # It will check if there is text to cipher and if there is a valid number to change the letters
-        if @text != nil && @num != 0
+        if @text != "" && @num != 0
 
             new_text = ""
             text_split = @text.split
@@ -23,19 +23,17 @@ class Caesar
             word_letters = word.split('')
             
             word_letters.each do |letter|
-                new_letter_index = @@alphabet.find_index(letter).to_i+@num
 
                 # Checks if the character is withing the alphabet list, if not, it will just write it in the new word
-                unless @@alphabet.find_index(letter) == nil
-
-                # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet
-                if new_letter_index > @@alphabet.length-1
-                    new_letter_index = new_letter_index-@@alphabet.length
-                end
-
-                new_word += @@alphabet[new_letter_index]
+                if @@alphabet_lowercase.find_index(letter) != nil || @@alphabet_uppercase.find_index(letter) != nil
+                    # Checks if the letter given is lowercase or uppercase
+                    if @@alphabet_lowercase.find_index(letter) != nil
+                        new_word += lower_letter(letter)
+                    else
+                        new_word += uppper_letter(letter)
+                    end
                 else
-                new_word += letter
+                    new_word += letter
                 end
             end
             # Adds the new word to the new text
@@ -44,10 +42,33 @@ class Caesar
 
             puts new_text
         else
-            return "The text given is null and/or the number given is 0."
+            puts "The text given is null and/or the number given is 0."
         end
+    end
+
+    # Private method that transforms lowercase letters
+    private def lower_letter(letter)
+        new_letter_index = @@alphabet_lowercase.find_index(letter).to_i+@num
+        # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet
+        if new_letter_index > @@alphabet_lowercase.length-1
+            new_letter_index = new_letter_index-@@alphabet_lowercase.length
+        end
+        @@alphabet_lowercase[new_letter_index]
+    end
+
+    # Private method that transforms uppercase letters
+    private def uppper_letter(letter)
+        new_letter_index = @@alphabet_uppercase.find_index(letter).to_i+@num
+        # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet
+        if new_letter_index > @@alphabet_uppercase.length-1
+            new_letter_index = new_letter_index-@@alphabet_uppercase.length
+        end
+        @@alphabet_uppercase[new_letter_index]
     end
 end 
 
-text_positive_number = Caesar.new("hey there", 3)
-text_negative_number = Caesar.new("hey there", -3)
+# Code tests
+text_positive_number = Caesar.new("Hey There", 3)
+text_negative_number = Caesar.new("Hey There", -3)
+text_not_valid_text = Caesar.new("", 1)
+text_not_valid_number = Caesar.new("Hey There", 0)
