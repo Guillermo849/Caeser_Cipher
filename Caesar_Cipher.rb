@@ -1,7 +1,8 @@
 # Program that will cipher a String that the user will pass to it.
 
 class Caesar
-    @@alphabet = Array ('a'..'z')
+    @@alphabet_lowercase = Array ('a'..'z')
+    @@alphabet_uppercase = Array ('A'..'Z')
 
     def initialize(text, num)
         @text = text
