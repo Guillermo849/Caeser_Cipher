@@ -1,7 +1,7 @@
 # Program that will cipher a String that the user will pass to it.
 
 class Caesar
-    @@alphabet_lowercase = Array ('a'..'z')
+    ALPHABET_LOWERCASE = Array ('a'..'z')
     @@alphabet_uppercase = Array ('A'..'Z')
 
     def initialize(text, num)
@@ -9,9 +9,11 @@ class Caesar
         @num = num
         cipher
     end
-
+    
+    # All methods under private will be private
+    private
     # Method that ciphers the text that we give it
-    private def cipher
+     def cipher
         # It will check if there is text to cipher and if there is a valid number to change the letters
         if @text != "" && @num != 0
 
