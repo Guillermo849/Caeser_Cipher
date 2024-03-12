@@ -7,13 +7,10 @@ class Caesar
     def initialize(text, num)
         @text = text
         @num = num
-        cipher
     end
 
-    # All methods under private will be private
-    private
     # Method that ciphers the text that we give it
-     def cipher
+    def cipher
         # It will check if there is text to cipher and if there is a valid number to change the letters
         if @text != "" && @num != 0
 
@@ -70,7 +67,7 @@ class Caesar
 end 
 
 # Code tests
-text_positive_number = Caesar.new("Hey There", 3)
-text_negative_number = Caesar.new("Hey There", -3)
-text_not_valid_text = Caesar.new("", 1)
-text_not_valid_number = Caesar.new("Hey There", 0)
+text_positive_number = Caesar.new("Hey There", 3).cipher
+text_negative_number = Caesar.new("Hey There", -3).cipher
+text_not_valid_text = Caesar.new("", 1).cipher
+text_not_valid_number = Caesar.new("Hey There", 0).cipher
