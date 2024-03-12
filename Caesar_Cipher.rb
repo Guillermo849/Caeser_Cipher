@@ -2,14 +2,14 @@
 
 class Caesar
     ALPHABET_LOWERCASE = Array ('a'..'z')
-    @@alphabet_uppercase = Array ('A'..'Z')
+    ALPHABET_UPPERCASE = Array ('A'..'Z')
 
     def initialize(text, num)
         @text = text
         @num = num
         cipher
     end
-    
+
     # All methods under private will be private
     private
     # Method that ciphers the text that we give it
