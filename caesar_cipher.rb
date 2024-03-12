@@ -45,8 +45,13 @@ class Caesar
         end
     end
 
+
+    private
+
+    attr_reader :text, :num
+
     # Private method that transforms lowercase letters
-    private def lower_letter(letter)
+    def lower_letter(letter)
         new_letter_index = @@alphabet_lowercase.find_index(letter).to_i+@num
         # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet
         if new_letter_index > @@alphabet_lowercase.length-1
@@ -56,7 +61,7 @@ class Caesar
     end
 
     # Private method that transforms uppercase letters
-    private def uppper_letter(letter)
+    def uppper_letter(letter)
         new_letter_index = @@alphabet_uppercase.find_index(letter).to_i+@num
         # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet
         if new_letter_index > @@alphabet_uppercase.length-1
