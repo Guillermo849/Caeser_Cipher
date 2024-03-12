@@ -13,10 +13,17 @@ class Caesar
     def cipher
         # It will check if there is text to cipher and if there is a valid number to change the letters
         return puts "The text given is null and/or the number given is 0." if text == "" || num.zero?
-        new_text = ""
         text_split = text.split('')
+        puts refactor_text(text_split)
+    end
 
-        text_split.each do |letter|
+    private
+
+    attr_reader :text, :num
+    
+    def refactor_text(text)
+        new_text = ""
+        text.each do |letter|
             # Checks if the character is withing the alphabet list, if not, it will just write it in the new word
             if ALPHABET_LOWERCASE.include?(letter) || ALPHABET_UPPERCASE.include?(letter)
                 # Checks if the letter given is lowercase or uppercase
@@ -25,12 +32,9 @@ class Caesar
             end
             new_text += letter
         end
-        puts new_text
+        new_text
     end
 
-    private
-
-    attr_reader :text, :num
     # Private method that transforms lowercase letters
     def lower_letter(letter)
         new_letter_index = ALPHABET_LOWERCASE.find_index(letter).to_i+num
