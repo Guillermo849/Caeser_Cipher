@@ -8,9 +8,11 @@ class Caesar
     START_OF_ALPHABET = 1
     END_OF_ALPHABET = 26
 
-    def initialize(text, num)
-        @text = text
-        @num = num
+    def initialize
+        puts "Write a text to cipher"
+        @text = gets.chomp
+        puts "Input a number to cifer the text"
+        @num = gets.chomp.to_i
     end
 
     # Method that ciphers the text that we give it
@@ -91,7 +93,4 @@ class Caesar
 end 
 
 # Code tests
-text_positive_number = Caesar.new("Hey There", 3).cipher
-text_negative_number = Caesar.new("Hey There", -3).cipher
-text_not_valid_text = Caesar.new("", 1).cipher
-text_not_valid_number = Caesar.new("Hey There", 0).cipher
+text_positive_number = Caesar.new.cipher
