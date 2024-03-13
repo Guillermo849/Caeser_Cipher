@@ -7,20 +7,15 @@ class Caesar
   START_OF_ALPHABET = 1
   END_OF_ALPHABET = 26
 
-  def initialize
-    puts 'Write a text to cipher'
-    @text = gets.chomp
-    puts 'Input a number to cifer the text'
-    @num = gets.chomp.to_i
+  def initialize(text, num)
+    @text = text
+    @num = num
   end
 
   # Method that ciphers the text that we give it
   def cipher
-    # It will check if there is text to cipher and if there is a valid number to change the letters
-    return puts 'The text given is null and/or the number given is 0.' if text.strip.empty? || num.zero?
-
     text_split = text.split('')
-    puts refactor_text(text_split)
+    refactor_text(text_split)
   end
 
   private
@@ -79,6 +74,3 @@ class Caesar
     alphabet.key(new_letter_value)
   end
 end
-
-# Code tests
-Caesar.new.cipher
