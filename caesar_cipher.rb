@@ -1,5 +1,8 @@
 # Program that will cipher a String that the user will pass to it.
 class Caesar
+  TextEmptyError = Class.new(StandardError)
+  NumberZeroError = Class.new(StandardError)
+
   ALPHABET_UPPERCASE = Array('A'..'Z')
   ALPHABET_LOWERCASE = Array('a'..'z')
   GO_FOWARD_THE_ALPHABET = 1
@@ -14,6 +17,9 @@ class Caesar
 
   # Method that ciphers the text that we give it
   def cipher
+    raise TextEmptyError, 'The text given is empty.' if text.strip.empty?
+    raise NumberZeroError, 'The number given cannot be 0.' if num.zero?
+
     text_split = text.split('')
     refactor_text(text_split)
   end
