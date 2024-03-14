@@ -4,18 +4,22 @@ require_relative 'caesar_cipher'
 class Runner
   def run
     loop do
-      begin
-        puts 'Write a text to cipher'
-        text = gets.chomp
-        puts 'Input a number to cifer the text'
-        num = gets.chomp.to_i
-        puts Caesar.new(text, num).cipher
-        puts 'Continue ciphering?(Y/N)'
-        break unless gets.chomp.upcase == 'Y'
-      rescue Caesar::TextEmptyError, Caesar::NumberZeroError => e
-        puts e.message
-      end
+      call_cipher
+      puts 'Continue ciphering?(Y/N)'
+      break unless gets.chomp.upcase == 'Y'
+    rescue Caesar::TextEmptyError, Caesar::NumberZeroError => e
+      puts e.message
     end
+  end
+
+  private
+
+  def call_cipher
+    puts 'Write a text to cipher'
+    text = gets.chomp
+    puts 'Input a number to cifer the text'
+    num = gets.chomp.to_i
+    puts Caesar.new(text, num).cipher
   end
 end
 
