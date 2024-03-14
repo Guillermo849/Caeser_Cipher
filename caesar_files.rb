@@ -7,4 +7,10 @@ class CaesarFiles
       f.close
     end
   end
+
+  def read_file(name)
+    File.foreach("#{name}.txt") { |line| puts line }
+  rescue Errno::ENOENT => e
+    puts e.message
+  end
 end
