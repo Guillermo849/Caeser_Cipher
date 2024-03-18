@@ -13,6 +13,13 @@ class Runner
     rescue Caesar::TextEmptyError, Caesar::NumberZeroError, Errno::ENOENT => e
       puts e.message
     end
+    loop do
+      call_read_file
+      puts 'Would you like to read another file?(Y/N)'
+      break unless gets.chomp.upcase == 'Y'
+    rescue Errno::ENOENT => e
+      puts e.message
+    end
   end
 
   private
@@ -32,6 +39,13 @@ class Runner
     puts 'Write some text if you want to add text'
     text = "#{cipher} - #{gets.chomp}"
     @caesar_f.create_file(file_name, text)
+  end
+
+  def call_read_file
+    puts Dir['*.txt']
+    puts 'What file file would you like to read?'
+    @caesar_f = CaesarFiles.new unless defined? @caesar_f
+    @caesar_f.read_file(gets.chomp)
   end
 end
 
