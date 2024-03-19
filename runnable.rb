@@ -5,47 +5,33 @@ require_relative 'caesar_files'
 class Runner
   def run
     loop do
-      cipher = call_cipher
-      puts cipher
-      call_write_file(cipher)
-      puts 'Continue ciphering?(Y/N)'
+      # Cipher text
+      puts 'Write a text to cipher'
+      text = gets.chomp
+      puts 'Input a number to cifer the text'
+      num = gets.chomp.to_i
+      cipher_text = Caesar.new(text, num).cipher
+      puts cipher_text
+      # Writes cipher file
+      puts 'Write the name of the file'
+      file_name = gets.chomp
+      text = "#{cipher_text} - #{text}"
+      file_writer = FileWriter.new(name: file_name, text: text)
+      file_writer.write_file
+      # Read previous files
+      puts 'Would you like to read previous files?(Y/N)'
+      if gets.chomp.upcase == 'Y'
+        puts Dir['*.txt']
+        puts 'What file would you like to read?'
+        file_reader = FileReader.new(name: gets.chomp)
+        file_reader.read_file
+      end
+      # Question to restart the loop
+      puts 'Would you like to cipher a new code?(Y/N)'
       break unless gets.chomp.upcase == 'Y'
-    rescue Caesar::TextEmptyError, Caesar::NumberZeroError, Errno::ENOENT => e
+    rescue Caesar::IpnutErrors, FileReader::ReadErrros, FileWrighter::WriterErros => e
       puts e.message
     end
-    loop do
-      call_read_file
-      puts 'Would you like to read another file?(Y/N)'
-      break unless gets.chomp.upcase == 'Y'
-    rescue Errno::ENOENT => e
-      puts e.message
-    end
-  end
-
-  private
-
-  def call_cipher
-    puts 'Write a text to cipher'
-    text = gets.chomp
-    puts 'Input a number to cifer the text'
-    num = gets.chomp.to_i
-    Caesar.new(text, num).cipher
-  end
-
-  def call_write_file(cipher)
-    @caesar_f = CaesarFiles.new unless defined? @caesar_f
-    puts 'Write the name of the file'
-    file_name = gets.chomp
-    puts 'Write some text if you want to add text'
-    text = "#{cipher} - #{gets.chomp}"
-    @caesar_f.create_file(file_name, text)
-  end
-
-  def call_read_file
-    puts Dir['*.txt']
-    puts 'What file file would you like to read?'
-    @caesar_f = CaesarFiles.new unless defined? @caesar_f
-    @caesar_f.read_file(gets.chomp)
   end
 end
 
