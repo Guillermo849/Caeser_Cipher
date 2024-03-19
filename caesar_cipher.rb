@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Program that will cipher a String that the user will pass to it.
 class Caesar
   IpnutErrors = Class.new(StandardError)

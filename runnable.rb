@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'caesar_cipher'
 require_relative 'caesar_files'
 # Class that will ask the user for input for the cipher method of the Caesar class

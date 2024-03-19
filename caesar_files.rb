@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class that will write the input from the user into a file.
 class FileWriter
   WriterErros = Class.new(StandardError)
