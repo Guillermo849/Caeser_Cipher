@@ -1,7 +1,8 @@
 # Program that will cipher a String that the user will pass to it.
 class Caesar
-  TextEmptyError = Class.new(StandardError)
-  NumberZeroError = Class.new(StandardError)
+  IpnutErrors = Class.new(StandardError)
+  TextEmptyError = Class.new(IpnutErrors)
+  NumberZeroError = Class.new(IpnutErrors)
 
   ALPHABET_UPPERCASE = Array('A'..'Z')
   ALPHABET_LOWERCASE = Array('a'..'z')
