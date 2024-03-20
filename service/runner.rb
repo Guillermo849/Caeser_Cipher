@@ -5,7 +5,7 @@ require_relative 'file_operations/file_reader'
 require_relative 'file_operations/file_writer'
 
 class Runner
-  def Runner.run
+  def slef.run
     loop do
       # Read previous files
       puts 'Would you like to read previous files?(Y/N)'
