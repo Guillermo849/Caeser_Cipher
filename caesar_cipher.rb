@@ -2,13 +2,13 @@
 
 # Program that will cipher a String that the user will pass to it.
 class Caesar
-  IpnutErrors = Class.new(StandardError)
-  TextEmptyError = Class.new(IpnutErrors)
-  NumberZeroError = Class.new(IpnutErrors)
+  Error = Class.new(StandardError)
+  TextEmptyError = Class.new(Error)
+  NumberZeroError = Class.new(Error)
 
   ALPHABET_UPPERCASE = Array('A'..'Z')
   ALPHABET_LOWERCASE = Array('a'..'z')
-  GO_FOWARD_THE_ALPHABET = 1
+  GO_FOWARD_IN_THE_ALPHABET = 1
   GO_BACK_THE_ALPHABET = -1
   START_OF_ALPHABET = 1
   END_OF_ALPHABET = 26
@@ -72,7 +72,7 @@ class Caesar
 
   def refactor_letter(alphabet, letter)
     new_letter_value = alphabet[letter].to_i
-    num_change = num.positive? ? GO_FOWARD_THE_ALPHABET : GO_BACK_THE_ALPHABET
+    num_change = num.positive? ? GO_FOWARD_IN_THE_ALPHABET : GO_BACK_THE_ALPHABET
     num.abs.times do
       new_letter_value += num_change
       # Checks if the index number is within the length of the alphabet, if it's not it will start form the start of the alphabet or from the end
