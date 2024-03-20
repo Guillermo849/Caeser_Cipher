@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module FileOperations
-  # It will read the files.
-  class FileReader
+  class Reader
     Error = Class.new(StandardError)
     NameEmptyError = Class.new(Error)
     FileNotFoundError = Class.new(Error)
@@ -12,8 +11,8 @@ module FileOperations
     end
 
     def read_file
-      raise NameEmpty, 'File name empty' if name.chomp.empty?
-      raise FileNotFound, 'File not found' if File.file?(name.chomp)
+      raise NameEmptyError, 'File name empty' if name.chomp.empty?
+      raise FileNotFoundError, 'File not found' if File.file?(name.chomp)
 
       File.foreach("#{name}.txt") { |line| puts line }
     end
